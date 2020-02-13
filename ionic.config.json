@@ -1,0 +1,7 @@
+{
+  "name": "miraclemotors",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
