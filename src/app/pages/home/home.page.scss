@@ -1,0 +1,47 @@
+@import "pxconverter";
+
+.trip-search {
+  .input-placeholder {
+    height: 50px;
+    border-radius: 10px;
+    border: 1px solid #f0f0f0;
+    display: flex;
+    background: #f0f0f0;
+    align-items: center;
+    padding: 15px;
+    font-weight: 400;
+    font-size: to-rem(16px);
+    color: #848b98;
+    margin-bottom: 10px;
+    position: relative;
+    overflow: hidden;
+    .icon {
+      ion-icon {
+        font-size: to-rem(25px);
+      }
+      margin-right: 10px;
+    }
+  }
+
+  ion-button {
+    margin-top: 20px;
+    --border-radius: 8px;
+    --box-shadow: none;
+    height: 50px;
+    font-weight: 500;
+  }
+}
+
+.how-to {
+  .title {
+    font-weight: 600;
+    color: var(--ion-color-secondary);
+  }
+  .list {
+    .heading {
+      color: var(--ion-color-secondary);
+      font-weight: 600;
+      font-size: to-rem(18px);
+    }
+  }
+}

@@ -1,9 +1,81 @@
-<ion-header>
+<ion-header class="ion-no-border">
   <ion-toolbar>
-    <ion-title>home</ion-title>
+    <ion-title color="primary">What's your destination?</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content fullscreen="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title class="large-title" size="large">What's your destination?</ion-title>
+    </ion-toolbar>
+  </ion-header>
 
+  <div class="trip-search ion-padding">
+    <div tappable class="input-placeholder ion-activatable">
+      <div class="icon">
+        <ion-icon name="locate"></ion-icon>
+      </div>
+      <span class="text">Departure Terminal</span>
+      <ion-ripple-effect type="bounded"></ion-ripple-effect>
+    </div>
+
+    <div tappable class="input-placeholder  ion-activatable">
+      <div class="icon">
+        <ion-icon name="location"></ion-icon>
+      </div>
+      <span class="text">Arrival Terminal</span>
+      <ion-ripple-effect type="bounded"></ion-ripple-effect>
+    </div>
+
+    <div tappable class="input-placeholder ion-activatable">
+      <div class="icon">
+        <ion-icon name="calendar"></ion-icon>
+      </div>
+      <span class="text">Departure Date</span>
+      <ion-ripple-effect type="bounded"></ion-ripple-effect>
+    </div>
+
+    <ion-button class="btn" expand="block">
+      <ion-icon slot="start" name="search-outline"></ion-icon>
+      Search
+    </ion-button>
+  </div>
+
+  <div class="how-to ion-padding">
+    <h3 class="title">How it works</h3>
+
+    <div class="list">
+      <ion-list>
+        <ion-item>
+          <ion-icon color="secondary" slot="start" name="search"></ion-icon>
+          <ion-label class="ion-text-wrap">
+            <h2 class="heading">Search</h2>
+            <ion-note>Find available buses for your departure date.</ion-note>
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-icon color="secondary" slot="start" name="hourglass-outline"></ion-icon>
+          <ion-label class="ion-text-wrap">
+            <h2 class="heading">Select Desired Departure Time</h2>
+            <ion-note>Choose the most comfortable departure time for your trip.</ion-note>
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-icon color="secondary" slot="start" name="people-outline"></ion-icon>
+          <ion-label class="ion-text-wrap">
+            <h2 class="heading">Book Seat(s)</h2>
+            <ion-note>Select your preferred seat(s).</ion-note>
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-icon color="secondary" name="star" slot="start"></ion-icon>
+          <ion-label class="ion-text-wrap">
+            <h2 class="heading">Complete booking(s)</h2>
+            <ion-note>Make payment for your selected options.</ion-note>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </div>
+  </div>
 </ion-content>
