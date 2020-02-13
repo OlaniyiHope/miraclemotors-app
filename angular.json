@@ -189,10 +189,15 @@
   },
   "schematics": {
     "@ionic/angular-toolkit:component": {
-      "styleext": "scss"
+      "styleext": "scss",
+      "spec": false
     },
     "@ionic/angular-toolkit:page": {
-      "styleext": "scss"
+      "styleext": "scss",
+      "spec": false
+    },
+    "@schematics/angular:service": {
+      "spec": false
     }
   }
 }
