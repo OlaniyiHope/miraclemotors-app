@@ -1,0 +1,35 @@
+@import "pxconverter";
+
+.booking-list {
+  .booking-item {
+    --ripple-color: var(--ion-color-secondary);
+    --border-color: rgba(66, 84, 134, 0.21176470588235294);
+    .trip {
+      display: flex;
+      align-items: center;
+      margin-bottom: 5px;
+      * {
+        color: var(--ion-color-secondary);
+        font-weight: 600;
+        font-size: to-rem(18px);
+      }
+      .icon {
+        margin: 0 10px;
+      }
+    }
+    .date,
+    .trip-type,
+    .trip-ref {
+      display: flex;
+      align-items: center;
+      text-align: center;
+      color: var(--ion-color-secondary);
+      font-size: to-rem(12px);
+      margin: 5px;
+      ion-icon {
+        font-size: to-rem(16px);
+        margin-right: 10px;
+      }
+    }
+  }
+}
