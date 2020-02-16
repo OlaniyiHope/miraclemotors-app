@@ -1,0 +1,16 @@
+ion-searchbar {
+  --box-shadow: none;
+  --background: #f0f0f0;
+  font-weight: 400;
+  --icon-color: #848b98;
+  --clear-button-color: #848b98;
+  --cancel-button-color: #848b98;
+}
+
+.result-item {
+  --min-height: 60px;
+  --ripple-color: var(--ion-color-secondary);
+  --border-color: #42548659;
+
+//   --border-width: px;
+}

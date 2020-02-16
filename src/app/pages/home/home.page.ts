@@ -1,3 +1,4 @@
+import { Helpers } from './../../app.helpers';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomePage implements OnInit {
 
-  constructor() { }
+  constructor(private helpers: Helpers) { }
 
   ngOnInit() {
   }
 
+  async openTerminalSearch() {
+    this.helpers.navPush('/terminal-search');
+  }
 }
