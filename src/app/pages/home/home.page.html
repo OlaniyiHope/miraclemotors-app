@@ -14,20 +14,20 @@
   <div class="trip-search ion-padding">
     <div class="top-row">
       <ion-item lines="none" class="trip-type">
-        <ion-select class="select" name="type" value="one_way" placeholder="Select Trip Type">
+        <ion-select #tripType class="select" name="type" value="one_way" placeholder="Select Trip Type">
           <ion-select-option value="one_way">One Way</ion-select-option>
           <ion-select-option value="round_trip">Round Trip</ion-select-option>
         </ion-select>
       </ion-item>
       <div class="passengers">
-        <ion-button class="btn" color="secondary" expand="block" fill="clear" shape="round">
+        <ion-button (click)="openPassengers()" class="btn" color="secondary" expand="block" fill="clear" shape="round">
           <ion-icon slot="start" name="people-outline"></ion-icon>
-          Passengers
+          ({{passengers.total}}) Passengers
         </ion-button>
       </div>
     </div>
- 
-    <div tappable class="input-placeholder ion-activatable">
+
+    <div tappable (click)="openTerminalSearch('departure')" class="input-placeholder ion-activatable">
       <div class="icon">
         <ion-icon name="locate"></ion-icon>
       </div>
@@ -35,7 +35,7 @@
       <ion-ripple-effect type="bounded"></ion-ripple-effect>
     </div>
 
-    <div tappable class="input-placeholder  ion-activatable">
+    <div tappable (click)="openTerminalSearch('arrival')" class="input-placeholder  ion-activatable">
       <div class="icon">
         <ion-icon name="location"></ion-icon>
       </div>
@@ -43,11 +43,24 @@
       <ion-ripple-effect type="bounded"></ion-ripple-effect>
     </div>
 
-    <div tappable class="input-placeholder ion-activatable">
+    <div tappable (click)="departureDatetime.open()" class="input-placeholder ion-activatable">
+      <ion-datetime hidden #departureDatetime displayFormat="MM/DD/YYYY">
+      </ion-datetime>
       <div class="icon">
         <ion-icon name="calendar"></ion-icon>
       </div>
-      <span class="text">Departure Date</span>
+      <span class="text">{{(departureDatetime.value | date) || 'Departure Date'}}</span>
+      <ion-ripple-effect type="bounded"></ion-ripple-effect>
+    </div>
+
+    <div *ngIf="tripType.value == 'round_trip'" tappable (click)="returnDatetime.open()"
+      class="input-placeholder ion-activatable">
+      <ion-datetime hidden #returnDatetime displayFormat="MM/DD/YYYY">
+      </ion-datetime>
+      <div class="icon">
+        <ion-icon name="calendar"></ion-icon>
+      </div>
+      <span class="text">{{(returnDatetime.value | date) || 'Return Date'}}</span>
       <ion-ripple-effect type="bounded"></ion-ripple-effect>
     </div>
 
