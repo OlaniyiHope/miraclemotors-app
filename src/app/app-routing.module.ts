@@ -6,6 +6,11 @@ const routes: Routes = [
     path: '',
     loadChildren: () => import('./pages/tabs/tabs.module').then(m => m.TabsPageModule)
   },
+  {
+    path: 'terminal-search',
+    loadChildren: () => import('./pages/terminal-search/terminal-search.module').then( m => m.TerminalSearchPageModule)
+  },
+
 ];
 @NgModule({
   imports: [
