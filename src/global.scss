@@ -28,18 +28,24 @@
 
 @font-face {
   font-family: GTWalsheimPro;
-  src: local("GT Walsheim Pro Regular"),local("GTWalsheimProRegular"),url(./assets/fonts/GTWalsheimProRegular.woff2) format("woff2");
+  src: local("GT Walsheim Pro Regular"), local("GTWalsheimProRegular"),
+    url(./assets/fonts/GTWalsheimProRegular.woff2) format("woff2");
   font-weight: 400;
-  font-style: normal
+  font-style: normal;
 }
 
 @font-face {
   font-family: GTWalsheimPro;
-  src: local("GT Walsheim Pro Bold"),local("GTWalsheimProBold"),url(./assets/fonts/GTWalsheimProBold.woff2) format("woff2");
+  src: local("GT Walsheim Pro Bold"), local("GTWalsheimProBold"),
+    url(./assets/fonts/GTWalsheimProBold.woff2) format("woff2");
   font-weight: 700;
-  font-style: normal
+  font-style: normal;
 }
 
 ion-title.large-title {
   font-size: to-rem(20px);
+}
+
+ion-title {
+  font-weight: bold;
 }
