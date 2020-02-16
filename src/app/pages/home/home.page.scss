@@ -1,6 +1,29 @@
 @import "pxconverter";
 
 .trip-search {
+  --text-color: #848b98;
+
+  .top-row {
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .trip-type {
+      border-bottom: 1px solid var(--ion-color-secondary);
+      color: var(--ion-color-secondary);
+      ion-select {
+        padding-left: 0px;
+        max-width: fit-content;
+      }
+    }
+
+    .passengers {
+      .btn {
+        text-transform: capitalize;
+      }
+    }
+  }
   .input-placeholder {
     height: 50px;
     border-radius: 10px;
@@ -11,7 +34,7 @@
     padding: 15px;
     font-weight: 400;
     font-size: to-rem(16px);
-    color: #848b98;
+    color: var(--text-color);
     margin-bottom: 10px;
     position: relative;
     overflow: hidden;

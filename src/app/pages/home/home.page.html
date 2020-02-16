@@ -12,6 +12,24 @@
   </ion-header>
 
   <div class="trip-search ion-padding">
+    <div class="top-row">
+      <ion-item lines="none" class="trip-type">
+        <ion-select class="select" name="type" value="one_way" placeholder="Select Trip Type">
+          <ion-select-option value="one_way">One Way</ion-select-option>
+          <ion-select-option value="round_trip">Round Trip</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <div class="passengers">
+        <ion-button class="btn" color="secondary" expand="block" fill="clear" shape="round">
+          <ion-icon slot="start" name="people-outline"></ion-icon>
+          Passengers
+        </ion-button>
+      </div>
+    </div>
+    <!-- <ion-button fill="clear" color="secondary">
+      <ion-icon slot="start" name="person-add"></ion-icon>
+      Passengers
+    </ion-button> -->
     <div tappable class="input-placeholder ion-activatable">
       <div class="icon">
         <ion-icon name="locate"></ion-icon>
