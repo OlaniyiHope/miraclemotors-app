@@ -27,12 +27,12 @@ const routes: Routes = [
         ]
       },
       {
-        path: 'profile',
+        path: 'others',
         children: [
           {
             path: '',
-            loadChildren: () => import('../profile/profile.module').then(m => m.ProfilePageModule)
-          }
+            loadChildren: () => import('../others/others.module').then(m => m.OthersPageModule)
+          },
         ]
       },
       {
