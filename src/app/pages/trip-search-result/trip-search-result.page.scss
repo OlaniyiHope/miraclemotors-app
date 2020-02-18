@@ -1,33 +1,6 @@
 @import "pxconverter";
 
-.trip-summary {
-  background: #7d839459;
-  padding: 16px;
-  border-radius: 10px;
-  margin: 5px;
-  p {
-    margin: 0px;
-  }
 
-  ion-icon {
-    margin-right: 5px;
-    margin-left: 5px;
-  }
-  .terminals {
-    display: flex;
-    align-items: center;
-  }
-  .date-passengers {
-    margin-top: 5px;
-    display: flex;
-    align-items: center;
-    font-size: to-rem(12pt);
-    .people-icon {
-      font-size: to-rem(14pt);
-      margin-left: 10px;
-    }
-  }
-}
 
 .trip-card {
   .time-car-seat {

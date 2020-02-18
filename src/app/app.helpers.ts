@@ -10,6 +10,7 @@ import { Subscription } from 'rxjs';
 import { NavigationOptions } from '@ionic/angular/providers/nav-controller';
 import { LocalStorageKey } from './enums/local-storage-keys.enum';
 import { Pages } from './enums/pages.enum';
+import { User } from './interfaces/user.interface';
 
 
 /**
@@ -216,15 +217,15 @@ export class Helpers {
   }
 
 
-  // /**
-  //  *
-  //  * helper to get user profile
-  //  * @returns {Promise<User>} User profile
-  //  * @memberof CommonMethods
-  //  */
-  // async getUser(): Promise<User> {
-  //   return await this.storage.get(LocalStorageKey.user);
-  // }
+  /**
+   *
+   * helper to get user profile
+   * @returns {Promise<User>} User profile
+   * @memberof CommonMethods
+   */
+  async getUser(): Promise<User> {
+    return await this.storage.get(LocalStorageKey.user);
+  }
 
 
   // /**

@@ -1,6 +1,7 @@
 import { Helpers } from 'src/app/app.helpers';
 import { Component, OnInit } from '@angular/core';
 import { AlertController } from '@ionic/angular';
+import { Pages } from 'src/app/enums/pages.enum';
 
 @Component({
   selector: 'app-passenger-details',
@@ -94,5 +95,7 @@ export class PassengerDetailsPage implements OnInit {
     return alert.present();
   }
 
-
+  gotoSummary() {
+    this.helpers.navPush(Pages.bookingSummary);
+  }
 }

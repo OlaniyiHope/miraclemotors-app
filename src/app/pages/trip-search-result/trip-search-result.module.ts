@@ -1,3 +1,4 @@
+import { TripSummaryModule } from './../../components/trip-summary/trip-summary.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -13,7 +14,8 @@ import { TripSearchResultPage } from './trip-search-result.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    TripSearchResultPageRoutingModule
+    TripSearchResultPageRoutingModule,
+    TripSummaryModule
   ],
   declarations: [TripSearchResultPage]
 })

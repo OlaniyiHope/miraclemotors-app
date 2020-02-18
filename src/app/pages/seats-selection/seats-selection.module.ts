@@ -1,3 +1,4 @@
+import { TripSummaryModule } from './../../components/trip-summary/trip-summary.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -13,7 +14,8 @@ import { SeatsSelectionPage } from './seats-selection.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    SeatsSelectionPageRoutingModule
+    SeatsSelectionPageRoutingModule,
+    TripSummaryModule
   ],
   declarations: [SeatsSelectionPage]
 })

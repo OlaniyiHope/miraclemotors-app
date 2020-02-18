@@ -49,3 +49,17 @@ ion-title.large-title {
 ion-title {
   font-weight: bold;
 }
+
+ion-footer {
+  text-align: center;
+  ion-toolbar {
+    padding: 16px !important;
+    ion-button {
+      width: 95%;
+      --border-radius: 8px;
+      --box-shadow: none;
+      height: 50px;
+      font-weight: 500;
+    }
+  }
+}
