@@ -78,8 +78,13 @@ export class HomePage implements OnInit {
 
   }
 
-  ionViewWillLeave() {
+  async searchForTrip() {
+    await this.helpers.createLoader('Searching For Available Trips...');
+    await this.helpers.navPush(Pages.tripSearch);
+    this.helpers.dismissLoader();
+  }
 
+  ionViewWillLeave() {
     this.selectedTerminals$.unsubscribe();
   }
 }

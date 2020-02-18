@@ -1,0 +1,53 @@
+<ion-header>
+  <ion-toolbar color="secondary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Search Result</ion-title>
+  </ion-toolbar>
+  <ion-toolbar color="secondary">
+    <div class="trip-summary">
+      <p class="terminals">
+        <ion-icon name="bus"></ion-icon>Benin <ion-icon name="arrow-forward"></ion-icon> Lagos
+      </p>
+      <p class="date-passengers">
+        <ion-icon name="calendar"></ion-icon> Wed, Feb 19 <ion-icon class="people-icon" name="people"></ion-icon> 3
+        Passengers
+      </p>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card class="trip-card" button *ngFor="let item of [1,2,3]" >
+    <ion-card-content>
+      <ion-grid>
+        <ion-row>
+          <ion-col size="6">
+            <div class="time-car-seat">
+              <h2 class="time">9:23 AM</h2>
+              <h4 class="car" color="secondary">
+                <ion-icon name="car"></ion-icon> Toyota Camry
+              </h4>
+              <p class="seats">10 Available Seats</p>
+            </div>
+          </ion-col>
+          <ion-col size="6">
+            <div class="location-price">
+              <div class="location">
+                Benin <ion-icon name="arrow-forward"></ion-icon> Lagos
+              </div>
+              <div class="price">
+                <p class="text">&#8358; 5000</p>
+                <p class="passengers-count">
+                  <ion-icon name="people"></ion-icon> x 3
+                </p>
+              </div>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+    </ion-card-content>
+  </ion-card>
+</ion-content>

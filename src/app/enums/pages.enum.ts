@@ -1,4 +1,5 @@
 export enum Pages {
     home = '/tabs/home',
-    terminalSearch = '/terminal-search'
+    terminalSearch = '/terminal-search',
+    tripSearch = '/trip-search-result'
 }

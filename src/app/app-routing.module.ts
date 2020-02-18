@@ -10,6 +10,10 @@ const routes: Routes = [
     path: 'terminal-search/:type',
     loadChildren: () => import('./pages/terminal-search/terminal-search.module').then( m => m.TerminalSearchPageModule)
   },
+  {
+    path: 'trip-search-result',
+    loadChildren: () => import('./pages/trip-search-result/trip-search-result.module').then( m => m.TripSearchResultPageModule)
+  },
 
 ];
 @NgModule({
