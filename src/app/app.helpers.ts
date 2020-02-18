@@ -81,7 +81,7 @@ export class Helpers {
   }
 
 
-  navPush(page: Pages, data: any = null) {
+  navPush(page: Pages | string, data: any = null) {
     this._navParam = data;
     return this.navCtrl.navigateForward(page);
   }
