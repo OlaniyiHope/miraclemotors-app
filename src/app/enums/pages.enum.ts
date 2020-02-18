@@ -3,5 +3,6 @@ export enum Pages {
     terminalSearch = '/terminal-search',
     tripSearch = '/trip-search-result',
     seatSelection = '/seats-selection',
-    passengerDetails = '/passenger-details'
+    passengerDetails = '/passenger-details',
+    bookingSummary = '/booking-summary'
 }

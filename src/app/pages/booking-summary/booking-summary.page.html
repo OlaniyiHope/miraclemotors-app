@@ -1,0 +1,65 @@
+<ion-header>
+  <ion-toolbar color="secondary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Booking Summary</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="booking-summary">
+    <div class="input-placeholder ">
+      <div class="icon">
+        <ion-icon name="return-up-forward-outline"></ion-icon>
+      </div>
+      <span class="text">{{'One Way Trip'}}</span>
+    </div>
+
+    <div class="input-placeholder ">
+      <div class="icon">
+        <ion-icon name="locate"></ion-icon>
+      </div>
+      <span class="text">{{'Departure Terminal'}}</span>
+    </div>
+
+    <div class="input-placeholder ">
+      <div class="icon">
+        <ion-icon name="location"></ion-icon>
+      </div>
+      <span class="text">{{'Arrival Terminal'}}</span>
+    </div>
+
+    <div class="input-placeholder">
+      <div class="icon">
+        <ion-icon name="people"></ion-icon>
+      </div>
+      <span class="text">{{'5 Passengers '}}</span>
+    </div>
+
+    <div class="input-placeholder">
+      <div class="icon">
+        <ion-icon name="calendar"></ion-icon>
+      </div>
+      <span class="text">{{ 'Departure Date'}}</span>
+    </div>
+
+    <div class="input-placeholder">
+
+      <div class="icon">
+        <ion-icon name="calendar"></ion-icon>
+      </div>
+      <span class="text">{{ 'Return Date'}}</span>
+    </div>
+
+
+  </div>
+</ion-content>
+<ion-footer>
+  <ion-toolbar>
+    <ion-button (click)="processPayment()" class="btn" color="secondary">
+      <ion-icon slot="start" name="card"></ion-icon>
+      Make Payment
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>
