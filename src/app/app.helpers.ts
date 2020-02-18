@@ -1,3 +1,4 @@
+import { Storage } from '@ionic/storage';
 import {
   LoadingController, AlertController, ToastController,
   Platform, NavController, ModalController, ActionSheetController
@@ -7,6 +8,8 @@ import { FormGroup } from '@angular/forms';
 import { ModalOptions, ActionSheetOptions, AlertButton } from '@ionic/core';
 import { Subscription } from 'rxjs';
 import { NavigationOptions } from '@ionic/angular/providers/nav-controller';
+import { LocalStorageKey } from './enums/local-storage-keys.enum';
+import { Pages } from './enums/pages.enum';
 
 
 /**
@@ -36,7 +39,7 @@ export class Helpers {
               private platform: Platform,
               private toastCtrl: ToastController,
               private alertCtrl: AlertController,
-    // public storage: Storage,
+              public storage: Storage,
               private loadingCtrl: LoadingController) {
   }
 
@@ -78,12 +81,12 @@ export class Helpers {
   }
 
 
-  navPush(page: string, data: any = null) {
+  navPush(page: Pages, data: any = null) {
     this._navParam = data;
     return this.navCtrl.navigateForward(page);
   }
 
-  setRoot(page: string, data: any = null, navOptions?: NavigationOptions) {
+  setRoot(page: Pages, data: any = null, navOptions?: NavigationOptions) {
     this._navParam = data;
     if (navOptions) {
       return this.navCtrl.navigateRoot(page, navOptions);
@@ -160,13 +163,13 @@ export class Helpers {
     return this.loading;
   }
 
-  // save(key: LocalStorageKey, value) {
-  //   return this.storage.set(key, value);
-  // }
+  save(key: LocalStorageKey, value) {
+    return this.storage.set(key, value);
+  }
 
-  // get(key: LocalStorageKey) {
-  //   return this.storage.get(key);
-  // }
+  get(key: LocalStorageKey) {
+    return this.storage.get(key);
+  }
 
   dismissLoader(isCustom = true) {
     try {
