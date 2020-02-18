@@ -7,7 +7,7 @@ const routes: Routes = [
     loadChildren: () => import('./pages/tabs/tabs.module').then(m => m.TabsPageModule)
   },
   {
-    path: 'terminal-search',
+    path: 'terminal-search/:type',
     loadChildren: () => import('./pages/terminal-search/terminal-search.module').then( m => m.TerminalSearchPageModule)
   },
 

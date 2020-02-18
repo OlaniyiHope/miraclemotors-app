@@ -3,19 +3,19 @@
     <ion-buttons slot="start">
       <ion-back-button color="secondary"></ion-back-button>
     </ion-buttons>
-    <ion-title color="secondary">Departure</ion-title>
+    <ion-title color="secondary">{{title | titlecase}} Terminal</ion-title>
   </ion-toolbar>
   <ion-toolbar>
-    <ion-searchbar placeholder="City, State, Terminal" inputmode="search" type="text" showCancelButton="never">
+    <ion-searchbar (ionChange)="search($event)" placeholder="City, State, Terminal" inputmode="search" type="text" showCancelButton="never">
     </ion-searchbar>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <ion-list lines="full">
-    <ion-item button class="result-item" *ngFor="let i of [1,2,3]">
+    <ion-item button (click)="selectTerminal(terminal)" class="result-item" *ngFor="let terminal of terminals">
       <ion-icon color="secondary" slot="start" name="car"></ion-icon>
-      <ion-label color="secondary">Benin (New Benin) Terminal</ion-label>
+      <ion-label color="secondary">{{terminal.name | titlecase}}</ion-label>
     </ion-item>
   </ion-list>
 </ion-content>

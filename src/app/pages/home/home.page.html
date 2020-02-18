@@ -31,7 +31,7 @@
       <div class="icon">
         <ion-icon name="locate"></ion-icon>
       </div>
-      <span class="text">Departure Terminal</span>
+      <span class="text">{{(terminals?.departure?.name | titlecase) || 'Departure Terminal'}}</span>
       <ion-ripple-effect type="bounded"></ion-ripple-effect>
     </div>
 
@@ -39,7 +39,7 @@
       <div class="icon">
         <ion-icon name="location"></ion-icon>
       </div>
-      <span class="text">Arrival Terminal</span>
+      <span class="text">{{(terminals?.arrival?.name | titlecase)||'Arrival Terminal'}}</span>
       <ion-ripple-effect type="bounded"></ion-ripple-effect>
     </div>
 
