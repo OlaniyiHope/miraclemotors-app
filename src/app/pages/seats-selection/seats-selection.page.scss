@@ -1,0 +1,57 @@
+@import "pxconverter";
+
+.seats {
+  margin: auto;
+  max-width: to-rem(300px);
+  border: solid 2px var(--ion-color-primary);
+  border-radius: 10px;
+  .row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 18px;
+  }
+
+  .seat {
+    border-radius: 50%;
+    width: 70px;
+    padding: 10px;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+    font-size: to-rem(12px);
+    .seat-icon {
+      width: to-rem(40px);
+    }
+  }
+}
+
+.keys {
+  border: solid 2px var(--ion-color-primary);
+  border-radius: 10px;
+  margin: 10px auto;
+  max-width: to-rem(300px);
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  .key {
+    text-align: center;
+    img {
+      max-width: to-rem(35px);
+    }
+    .text {
+      margin-bottom: 0px;
+      margin-top: 2px;
+      font-size: to-rem(13px);
+    }
+  }
+}
+
+.footer-toolbar {
+  text-align: center;
+  ion-button {
+    width: 100px;
+    font-weight: 500;
+    text-transform: capitalize;
+  }
+}

@@ -1,0 +1,58 @@
+<ion-header>
+  <ion-toolbar color="secondary">
+    <ion-title>Seats Selection</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <p class="info">Please select your (5) preferred seats to continue</p>
+  <div class="seats">
+    <div class="row front-row">
+      <div class="seat">
+        <img class="seat-icon" src="assets/imgs/seat-driver.svg" alt="icon of seat">
+        <div class="seat-number">Driver</div>
+      </div>
+      <div class="seat ion-activatable" tappable (click)="toggleSeat(1)">
+        <img class="seat-icon" src="assets/imgs/seat.svg" alt="icon of seat">
+        <div class="seat-number">1</div>
+        <ion-ripple-effect type="bounded"></ion-ripple-effect>
+      </div>
+    </div>
+    <div class="row regular-row">
+      <div class="seat">
+        <img class="seat-icon" src="assets/imgs/available-seat.svg" alt="icon of seat">
+        <div class="seat-number">2</div>
+      </div>
+      <div class="seat">
+        <img class="seat-icon" src="assets/imgs/booked-seat.svg" alt="icon of seat">
+        <div class="seat-number">3</div>
+      </div>
+      <div class="seat">
+        <img class="seat-icon" src="assets/imgs/selected-seat.svg" alt="icon of seat">
+        <div class="seat-number">4</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="keys">
+    <div class="key">
+      <img src="assets/imgs/available-seat.svg">
+      <p class="text">Available</p>
+    </div>
+    <div class="key">
+      <img src="assets/imgs/selected-seat.svg">
+      <p class="text">Selected</p>
+    </div>
+    <div class="key">
+      <img src="assets/imgs/booked-seat.svg">
+      <p class="text">Booked</p>
+    </div>
+  </div>
+</ion-content>
+<ion-footer class="ion-no-border">
+  <ion-toolbar class="footer-toolbar">
+    <ion-button color="secondary">
+      Continue
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>

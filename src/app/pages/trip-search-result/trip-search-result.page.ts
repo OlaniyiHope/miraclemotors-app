@@ -1,3 +1,5 @@
+import { Pages } from 'src/app/enums/pages.enum';
+import { Helpers } from 'src/app/app.helpers';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TripSearchResultPage implements OnInit {
 
-  constructor() { }
+  constructor(private helpers: Helpers) { }
 
   ngOnInit() {
   }
 
+  selectTrip() {
+    this.helpers.navPush(Pages.seatSelection);
+  }
 }

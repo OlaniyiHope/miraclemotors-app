@@ -14,6 +14,10 @@ const routes: Routes = [
     path: 'trip-search-result',
     loadChildren: () => import('./pages/trip-search-result/trip-search-result.module').then( m => m.TripSearchResultPageModule)
   },
+  {
+    path: 'seats-selection',
+    loadChildren: () => import('./pages/seats-selection/seats-selection.module').then( m => m.SeatsSelectionPageModule)
+  },
 
 ];
 @NgModule({
