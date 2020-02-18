@@ -171,16 +171,8 @@ export class Helpers {
     return this.storage.get(key);
   }
 
-  dismissLoader(isCustom = true) {
-    try {
-      if (isCustom) {
-        return this.customLadingModal.dismiss();
-
-      }
-      this.loading.dismiss();
-    } catch {
-      /* Prevent uncaught errors */
-    }
+  dismissLoader() {
+    this.loading.dismiss();
   }
 
 

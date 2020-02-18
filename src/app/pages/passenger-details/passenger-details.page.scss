@@ -1,0 +1,10 @@
+@import "pxconverter";
+
+.add-btn {
+  color: var(--ion-color-secondary);
+  font-size: to-rem(12px);
+  ion-icon {
+    color: var(--ion-color-secondary);
+    font-size: to-rem(15px);
+  }
+}

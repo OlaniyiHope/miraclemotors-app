@@ -1,5 +1,8 @@
 <ion-header>
   <ion-toolbar color="secondary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
     <ion-title>Seats Selection</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -51,7 +54,7 @@
 </ion-content>
 <ion-footer class="ion-no-border">
   <ion-toolbar class="footer-toolbar">
-    <ion-button color="secondary">
+    <ion-button (click)="goToPassengerDetails()" color="secondary">
       Continue
     </ion-button>
   </ion-toolbar>

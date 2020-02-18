@@ -1,4 +1,6 @@
+import { Helpers } from 'src/app/app.helpers';
 import { Component, OnInit } from '@angular/core';
+import { Pages } from 'src/app/enums/pages.enum';
 
 @Component({
   selector: 'app-seats-selection',
@@ -8,7 +10,7 @@ import { Component, OnInit } from '@angular/core';
 export class SeatsSelectionPage implements OnInit {
 
   selectedSeats = [];
-  constructor() { }
+  constructor(private helpers: Helpers) { }
 
   ngOnInit() {
   }
@@ -19,6 +21,10 @@ export class SeatsSelectionPage implements OnInit {
     } else {
       this.selectedSeats.pop();
     }
+  }
+
+  goToPassengerDetails() {
+    this.helpers.navPush(Pages.passengerDetails);
   }
 
 }
