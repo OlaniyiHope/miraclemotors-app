@@ -1,0 +1,42 @@
+<ion-content>
+  <div class="top">
+    <h2 class="title">Login.</h2>
+  </div>
+
+  <div class="form ion-padding-horizontal">
+    <p class="hint">Login to continue</p>
+    <form [formGroup]="signinForm">
+      <ion-list>
+        <ion-item>
+          <ion-label position="stacked">
+            Phone Number
+          </ion-label>
+          <ion-input [autofocus]="true" formControlName="phoneNumber" type="tel">
+          </ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">
+            Password
+          </ion-label>
+          <ion-input formControlName="password" type="password">
+          </ion-input>
+        </ion-item>
+      </ion-list>
+    </form>
+  </div>
+  <div class="others ion-padding-horizontal">
+    <div class="action">
+      <ion-button flat [disabled]="!signinForm.valid" expand="block" (click)="submitForm()" class="app-btn">
+        login
+      </ion-button>
+    </div>
+
+    <div class="new-account">
+      Don't have an account?
+      <ion-button class="signup-btn" (click)="gotoSignupPage()" fill="clear">
+        <ion-icon slot="start" name="person-add"></ion-icon>
+        Create One
+      </ion-button>
+    </div>
+  </div>
+</ion-content>

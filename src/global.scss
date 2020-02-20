@@ -63,3 +63,10 @@ ion-footer {
     }
   }
 }
+
+ion-button[flat] {
+  --border-radius: 8px;
+  --box-shadow: none;
+  height: 50px;
+  font-weight: 500;
+}

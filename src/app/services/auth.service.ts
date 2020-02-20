@@ -1,4 +1,4 @@
-import { User } from './../interfaces/user.interface';
+import { User, Auth } from './../interfaces/user.interface';
 import { Helpers } from 'src/app/app.helpers';
 import { Injectable } from '@angular/core';
 import { BaseService } from './base.service';
@@ -22,7 +22,7 @@ export class AuthService {
 
   signup(data) {
     this.api.setActionUrl(this.actionUrl, '/signup');
-    return this.api.post<any>(data);
+    return this.api.post<Auth>(data);
   }
 
   resetPassword(data: { email: string }) {
@@ -32,13 +32,8 @@ export class AuthService {
 
   login(data) {
     this.api.setActionUrl(this.actionUrl, '/signin');
-    return this.api.post<any>(data);
+    return this.api.post<Auth>(data);
 
-  }
-
-  verifyOtp(otp: string) {
-    this.api.setActionUrl(this.actionUrl, '/verify');
-    return this.api.post<any>({ otp });
   }
 
   public refreshToken(refreshToken: string) {
@@ -46,10 +41,6 @@ export class AuthService {
     return this.api.post<any>({ refreshToken });
   }
 
-  public resendOTP() {
-    this.api.setActionUrl(this.actionUrl, '/resend-otp');
-    return this.api.post<any>(null);
-  }
 
   async authSuccess(accessToken, refreshToken, user: User) {
     await this.helpers.save(LocalStorageKey.accessToken, accessToken);
@@ -62,7 +53,7 @@ export class AuthService {
     await this.helpers.storage.remove(LocalStorageKey.accessToken);
     await this.helpers.storage.remove(LocalStorageKey.refreshToken);
     await this.helpers.storage.remove(LocalStorageKey.user);
-    await this.helpers.setRoot(Pages.home);
+    await this.helpers.setRoot(Pages.signin);
     return true;
   }
 }

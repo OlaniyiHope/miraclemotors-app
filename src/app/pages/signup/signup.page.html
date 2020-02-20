@@ -1,0 +1,81 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="top">
+    <h2 class="title">Tell us about you.</h2>
+  </div>
+
+  <div class="form ion-padding-horizontal ion-text-center">
+    <form [formGroup]="signupForm">
+      <ion-list input>
+        <ion-item>
+          <ion-label position="stacked">
+            First Name
+          </ion-label>
+          <ion-input formControlName="firstName" type="text"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">
+            Last Name
+          </ion-label>
+          <ion-input formControlName="lastName" type="text"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">
+            Email Address
+          </ion-label>
+          <ion-input formControlName="email" type="email"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">
+            Phone Number
+          </ion-label>
+          <div>
+            <ion-input #phoneNumberInput formControlName="phoneNumber" type="tel"></ion-input>
+          </div>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">
+            Password </ion-label>
+          <div>
+            <ion-input formControlName="password" type="password"></ion-input>
+          </div>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Select Gender</ion-label>
+          <ion-select formControlName="gender" interface="action-sheet" placeholder="Select Gender">
+            <ion-select-option *ngFor="let gender of ['male','female']" [value]="gender">
+              {{ gender | titlecase }}</ion-select-option>
+          </ion-select>
+        </ion-item>
+
+      </ion-list>
+    </form>
+  </div>
+  <div class="others ion-padding-horizontal">
+    <div class="action">
+      <ion-button flat [disabled]="!signupForm.valid" class="app-btn" (click)="submitForm()" fill="solid"
+        expand="block">
+        Create account
+      </ion-button>
+    </div>
+    <div class="terms">
+      <p class="text">
+        By creating an account, you are agreeing to our
+        <br />
+        <ion-text color="primary">
+          <span tappable>Terms & Conditions</span>
+        </ion-text> and
+        <ion-text color="primary">
+          <span tappable>Privacy Policy.</span>
+        </ion-text>
+      </p>
+    </div>
+  </div>
+</ion-content>
