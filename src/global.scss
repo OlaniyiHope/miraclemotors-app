@@ -75,3 +75,9 @@ ion-card {
   box-shadow: rgba(0, 0, 0, 0.12) 0px 4px 16px;
   border-radius: 8px;
 }
+
+ion-searchbar.curve {
+  .searchbar-input {
+    border-radius: 10px;
+  }
+}
