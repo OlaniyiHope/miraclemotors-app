@@ -1,5 +1,17 @@
 @import "pxconverter";
 
+.bg {
+  background: #d3d3d3fa;
+  --background: #d3d3d3fa;
+}
+
+ion-item {
+  margin-bottom: 10px;
+  &.top {
+    margin-top: 10px;
+  }
+}
+
 .add-btn {
   color: var(--ion-color-secondary);
   font-size: to-rem(12px);
@@ -9,4 +21,14 @@
   }
 }
 
-
+.sex-options {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  ion-item {
+    margin-right: 10px;
+    ion-label {
+      margin-right: 10px;
+    }
+  }
+}

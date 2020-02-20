@@ -1,7 +1,8 @@
+import { PassengersData } from './../../interfaces/passenger.interface';
 import { Helpers } from 'src/app/app.helpers';
 import { Component, OnInit } from '@angular/core';
-import { AlertController } from '@ionic/angular';
 import { Pages } from 'src/app/enums/pages.enum';
+import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
 
 @Component({
   selector: 'app-passenger-details',
@@ -10,92 +11,55 @@ import { Pages } from 'src/app/enums/pages.enum';
 })
 export class PassengerDetailsPage implements OnInit {
 
-  constructor(private alertCtrl: AlertController, private helpers: Helpers) { }
+  passengersForm: FormGroup;
+  passengers: PassengersData;
+  constructor(private fb: FormBuilder, private helpers: Helpers) {
+    this.passengers = this.helpers.getNavParams('passengers');
+    this.initializeForms();
+  }
 
   ngOnInit() {
   }
 
-  async addPassenger() {
+  initializeForms() {
 
+    const controls = [
+      this.fb.group({
+        name: [null, Validators.required],
+        ageBracket: ['adult', Validators.required],
+        gender: ['male', Validators.required]
+      })
+    ];
 
+    for (let index = 1; index < this.passengers.adults; index++) {
+      controls.push(this.fb.group({
+        name: [null, Validators.required],
+        ageBracket: ['adult', Validators.required],
+        gender: [null, Validators.required]
+      }));
+    }
 
-    const alert = await this.alertCtrl.create({
-      header: 'Enter Full Name',
-      inputs: [
+    for (let index = 0; index < this.passengers.children; index++) {
+      controls.push(this.fb.group({
+        name: [null, Validators.required],
+        ageBracket: ['child', Validators.required],
+        gender: [null, Validators.required]
+      }));
+    }
 
-        {
-          name: 'name',
-          type: 'text',
-          placeholder: 'Enter Full Name'
-        },
-      ],
-      buttons: [
-        {
-          text: 'Cancel',
-          role: 'cancel',
-          cssClass: 'secondary',
-          handler: () => {
-            console.log('Confirm Cancel');
-          }
-        }, {
-          text: 'Ok',
-          handler: ({ name }) => {
-            if (!name.trim().length) {
-              this.helpers.createErrorToast(`Please enter passenger full name`);
-              return false;
-            }
-            alert.dismiss().then(async () => {
-              await this.presentSelectSexAlert(name);
-              console.log('Confirm Ok');
-            });
-            return false;
-          }
-        }
-      ]
+    this.passengersForm = this.fb.group({
+      passengers: this.fb.array(controls, [Validators.required])
     });
 
-    await alert.present();
+    console.log(this.passengersForm.value);
   }
 
-  async presentSelectSexAlert(name: string) {
-    const alert = await this.alertCtrl.create({
-      header: 'Select Gender',
-      inputs: [
-
-        {
-          name: 'gender',
-          type: 'radio',
-          label: 'Male',
-          value: 'male',
-        },
-        {
-          name: 'gender',
-          type: 'radio',
-          label: 'Female',
-          value: 'female'
-        },
-
-      ],
-      buttons: [
-        {
-          text: 'Cancel',
-          role: 'cancel',
-          cssClass: 'secondary',
-          handler: () => {
-            console.log('Confirm Cancel');
-          }
-        }, {
-          text: 'Ok',
-          handler: () => {
-            console.log('Confirm Ok');
-          }
-        }
-      ]
-    });
-    return alert.present();
+  passengersFormControls() {
+    return (this.passengersForm.get('passengers') as FormArray).controls;
   }
 
   gotoSummary() {
-    this.helpers.navPush(Pages.bookingSummary);
+    const passengers = this.passengersForm.controls.passengers.value;
+    this.helpers.navPush(Pages.bookingSummary, { ...this.helpers.getNavParams(), passengers });
   }
 }

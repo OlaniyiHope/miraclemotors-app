@@ -87,7 +87,7 @@ export class Helpers {
     return this.navCtrl.navigateForward(page);
   }
 
-  setRoot(page: Pages, data: any = null, navOptions?: NavigationOptions) {
+  setRoot(page: Pages | string, data: any = null, navOptions?: NavigationOptions) {
     this._navParam = data;
     if (navOptions) {
       return this.navCtrl.navigateRoot(page, navOptions);
@@ -127,6 +127,7 @@ export class Helpers {
 
   createAlertWithHandler(message = '', buttons: Array<AlertButton>, header = '', subHeader = '') {
     return this.alertCtrl.create({
+      backdropDismiss: false,
       header,
       subHeader,
       message,
@@ -173,7 +174,7 @@ export class Helpers {
   }
 
   dismissLoader() {
-    this.loading.dismiss();
+    return this.loading.dismiss();
   }
 
 
@@ -246,6 +247,7 @@ export class Helpers {
    * @returns Unregister
    * @memberof CommonMethods
    */
+  // tslint:disable-next-line: ban-types
   handleBackButton(customHandler: Function = () => { }, priority: number = 100) {
     console.log(this.platform.backButton);
     return this.platform.backButton.subscribeWithPriority(priority, customHandler());

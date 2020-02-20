@@ -3,36 +3,38 @@
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
-    <ion-title>Search Result</ion-title>
+    <ion-title>{{title | titlecase}} Trip Result</ion-title>
   </ion-toolbar>
   <ion-toolbar>
-    <app-trip-summary></app-trip-summary>
+    <app-trip-summary [terminals]="terminals" [passengers]="passengers" [departureDate]="departureDate">
+    </app-trip-summary>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-card (click)="selectTrip()" class="trip-card" button *ngFor="let item of [1,2,3]">
+  <ion-card (click)="selectTrip(trip)" class="trip-card" button *ngFor="let trip of trips">
     <ion-card-content>
       <ion-grid>
         <ion-row>
           <ion-col size="6">
             <div class="time-car-seat">
-              <h2 class="time">9:23 AM</h2>
+              <h2 class="time">{{trip.departureTimestamp | date:'shortTime'}}</h2>
               <h4 class="car" color="secondary">
-                <ion-icon name="car"></ion-icon> Toyota Camry
+                <ion-icon name="car"></ion-icon> {{trip.vehicle.type.model}}
               </h4>
-              <p class="seats">10 Available Seats</p>
+              <p class="seats">{{trip.seats.length}} Available Seats</p>
             </div>
           </ion-col>
           <ion-col size="6">
             <div class="location-price">
               <div class="location">
-                Benin <ion-icon name="arrow-forward"></ion-icon> Lagos
+                {{trip.departureTerminal.name | titlecase}} <ion-icon name="arrow-forward"></ion-icon>
+                {{trip.arrivalTerminal.name | titlecase}}
               </div>
               <div class="price">
-                <p class="text">&#8358; 5000</p>
+                <p class="text">{{trip.price | currency:'&#8358; ' }}</p>
                 <p class="passengers-count">
-                  <ion-icon name="people"></ion-icon> x 3
+                  <ion-icon name="people"></ion-icon> x {{passengers.total}}
                 </p>
               </div>
             </div>

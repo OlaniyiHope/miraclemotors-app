@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { PassengersData } from './../../interfaces/passenger.interface';
+import { Terminal } from './../../interfaces/terminal.interface';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-trip-summary',
@@ -7,8 +9,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TripSummaryComponent implements OnInit {
 
+  @Input() terminals: { departure: Terminal, arrival: Terminal };
+  @Input() departureDate: string;
+  @Input() passengers: PassengersData;
   constructor() { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
 }

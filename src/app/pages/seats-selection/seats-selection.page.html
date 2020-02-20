@@ -3,13 +3,14 @@
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
-    <ion-title>Seats Selection</ion-title>
+    <ion-title>{{title | titlecase}} Seats Selection</ion-title>
   </ion-toolbar>
-  <app-trip-summary></app-trip-summary>
+  <app-trip-summary [terminals]="terminals" [passengers]="passengers" [departureDate]="departureDate">
+  </app-trip-summary>
 </ion-header>
 
 <ion-content class="ion-padding">
-  <p class="info">Please select your (5) preferred seats to continue</p>
+  <p class="info">Please select your ({{passengers?.total}}) preferred seats to continue</p>
   <div class="seats">
     <div class="row front-row">
       <div class="seat">
@@ -17,23 +18,39 @@
         <div class="seat-number">Driver</div>
       </div>
       <div class="seat ion-activatable" tappable (click)="toggleSeat(1)">
-        <img class="seat-icon" src="assets/imgs/seat.svg" alt="icon of seat">
+        <img class="seat-icon" [src]="getSeatStatusImage(1)" alt="icon of seat">
         <div class="seat-number">1</div>
         <ion-ripple-effect type="bounded"></ion-ripple-effect>
       </div>
     </div>
     <div class="row regular-row">
-      <div class="seat">
-        <img class="seat-icon" src="assets/imgs/available-seat.svg" alt="icon of seat">
+      <div class="seat ion-activatable" tappable (click)="toggleSeat(2)">
+        <img class="seat-icon" [src]="getSeatStatusImage(2)" alt="icon of seat">
         <div class="seat-number">2</div>
+        <ion-ripple-effect type="bounded"></ion-ripple-effect>
       </div>
-      <div class="seat">
-        <img class="seat-icon" src="assets/imgs/booked-seat.svg" alt="icon of seat">
+      <div class="seat ion-activatable" tappable (click)="toggleSeat(3)">
+        <img class="seat-icon" [src]="getSeatStatusImage(3)" alt="icon of seat">
         <div class="seat-number">3</div>
+        <ion-ripple-effect type="bounded"></ion-ripple-effect>
       </div>
-      <div class="seat">
-        <img class="seat-icon" src="assets/imgs/selected-seat.svg" alt="icon of seat">
+      <div class="seat"></div>
+    </div>
+    <div class="row regular-row">
+      <div class="seat ion-activatable" tappable (click)="toggleSeat(4)">
+        <img class="seat-icon" [src]="getSeatStatusImage(4)" alt="icon of seat">
         <div class="seat-number">4</div>
+        <ion-ripple-effect type="bounded"></ion-ripple-effect>
+      </div>
+      <div class="seat ion-activatable" tappable (click)="toggleSeat(5)">
+        <img class="seat-icon" [src]="getSeatStatusImage(5)" alt="icon of seat">
+        <div class="seat-number">5</div>
+        <ion-ripple-effect type="bounded"></ion-ripple-effect>
+      </div>
+      <div class="seat ion-activatable" tappable (click)="toggleSeat(6)">
+        <img class="seat-icon" [src]="getSeatStatusImage(6)" alt="icon of seat">
+        <div class="seat-number">6</div>
+        <ion-ripple-effect type="bounded"></ion-ripple-effect>
       </div>
     </div>
   </div>
@@ -55,7 +72,7 @@
 </ion-content>
 <ion-footer>
   <ion-toolbar>
-    <ion-button (click)="goToPassengerDetails()" color="secondary">
+    <ion-button (click)="submit()" color="secondary">
       Continue
     </ion-button>
   </ion-toolbar>

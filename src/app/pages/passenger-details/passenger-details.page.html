@@ -3,94 +3,104 @@
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
-    <ion-title>Passenger(s) Details</ion-title>
+    <ion-title>Passengers Details</ion-title>
 
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <ion-list lines="full">
+<ion-content class="bg">
+
+  <ion-list class="bg">
     <ion-list-header>
-      <ion-label>Passengers Details</ion-label>
+      <ion-label>Please fill in all passengers details</ion-label>
     </ion-list-header>
-    <ion-item-group>
-      <ion-item-divider>
-        <ion-label>Adults</ion-label>
-      </ion-item-divider>
+    <ion-card class="ion-padding-bottom">
+      <ion-card-header>
+        <ion-card-subtitle>Adult</ion-card-subtitle>
+        <ion-card-title>{{passengers.total > 1 ? 'Main Passenger' : 'Passenger 1'}}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-item-group>
+          <ion-item-divider>
+            <ion-label>Personal Details</ion-label>
+          </ion-item-divider>
+          <form [formGroup]="passengersForm">
+            <div formArrayName="passengers">
+              <ion-item class="top" lines="inset" formGroupName="0">
+                <ion-input formControlName='name' placeholder="Full Name" type="text"></ion-input>
+              </ion-item>
+            </div>
+          </form>
+          <ion-item lines="inset">
+            <ion-input placeholder="Email Address" type="text"></ion-input>
+          </ion-item>
 
-      <ion-item>
-        <ion-icon slot="start" name="person"></ion-icon>
-        <ion-label>Brian Iyoha</ion-label>
-        <ion-button fill="clear">
-          <ion-icon slot="icon-only" name="create-outline"></ion-icon>
-        </ion-button>
-      </ion-item>
-      <ion-item class="add-btn" (click)="addPassenger()" button lines="none">
-        <ion-icon slot="start" name="add"></ion-icon>
-        <ion-label>
-          Add Another Adult
-        </ion-label>
-      </ion-item>
-    </ion-item-group>
-    <ion-item-group>
-      <ion-item-divider>
-        <ion-label>Children</ion-label>
-      </ion-item-divider>
+          <ion-item lines="inset">
+            <ion-input placeholder="Phone Number" type="tel"></ion-input>
+          </ion-item>
+        </ion-item-group>
 
-      <ion-item>
-        <ion-icon slot="start" name="person"></ion-icon>
-        <ion-label>Brian Iyoha</ion-label>
-        <ion-button fill="clear">
-          <ion-icon slot="icon-only" name="create-outline"></ion-icon>
-        </ion-button>
-      </ion-item>
-      <ion-item class="add-btn" (click)="addPassenger()" button lines="none">
-        <ion-icon slot="start" name="add"></ion-icon>
-        <ion-label>
-          Add Another child
-        </ion-label>
-      </ion-item>
-    </ion-item-group>
+        <ion-item-group class="ion-margin-top">
+          <ion-item-divider>
+            <ion-label>Next of Kin</ion-label>
+          </ion-item-divider>
+
+          <ion-item lines="inset" class="top">
+            <ion-input placeholder="Full Name" type="text"></ion-input>
+          </ion-item>
+
+          <ion-item lines="inset">
+            <ion-input placeholder="Phone Number" type="tel"></ion-input>
+          </ion-item>
+        </ion-item-group>
+      </ion-card-content>
+    </ion-card>
   </ion-list>
 
-  <ion-list>
+  <ion-list lines="full" class="bg" *ngIf="passengers.total > 1">
     <ion-list-header>
-      <ion-label>Contact Information</ion-label>
+      <ion-label>Other Passengers Details</ion-label>
     </ion-list-header>
-    <ion-item-group>
-      <ion-item-divider>
-        <ion-label>Personal Details</ion-label>
-      </ion-item-divider>
+    <form [formGroup]="passengersForm">
+      <div [formArrayName]="'passengers'">
+        <ng-template *ngFor="let passenger of passengersFormControls(); let i = index;" [ngIf]="i > 0">
+          <ion-card>
+            <ion-card-header>
+              <ion-card-subtitle>{{passenger.value.ageBracket | titlecase}}</ion-card-subtitle>
+              <ion-card-title>Passenger {{i}}</ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+              <ion-list [formGroupName]="i">
+                <ion-item>
+                  <ion-input formControlName="name" placeholder="Full name"></ion-input>
+                </ion-item>
+                <ion-radio-group name="gender" formControlName="gender">
+                  <div class="sex-options">
+                    <ion-item lines="none">
+                      <ion-label>Male</ion-label>
+                      <ion-radio value="male"></ion-radio>
+                    </ion-item>
+                    <ion-item lines="none">
+                      <ion-label>Female</ion-label>
+                      <ion-radio value="female"></ion-radio>
+                    </ion-item>
+                  </div>
+                </ion-radio-group>
+              </ion-list>
+            </ion-card-content>
+          </ion-card>
+        </ng-template>
 
-      <ion-item>
-        <ion-label position="stacked">Email Address</ion-label>
-        <ion-input placeholder="Email Address" type="text"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label position="stacked">Phone Number</ion-label>
-        <ion-input placeholder="Phone Number" type="tel"></ion-input>
-      </ion-item>
-    </ion-item-group>
-    <ion-item-group>
-      <ion-item-divider>
-        <ion-label>Next of Kin</ion-label>
-      </ion-item-divider>
+      </div>
+    </form>
 
-      <ion-item>
-        <ion-label position="stacked">Email Address</ion-label>
-        <ion-input placeholder="Email Address" type="text"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label position="stacked">Phone Number</ion-label>
-        <ion-input placeholder="Phone Number" type="tel"></ion-input>
-      </ion-item>
-    </ion-item-group>
   </ion-list>
+
 </ion-content>
 
 <ion-footer>
   <ion-toolbar>
-    <ion-button (click)="gotoSummary()" color="secondary">
+    <ion-button [disabled]="!passengersForm.valid" (click)="gotoSummary()" color="secondary">
       Continue
     </ion-button>
   </ion-toolbar>

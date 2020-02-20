@@ -11,11 +11,11 @@ const routes: Routes = [
     loadChildren: () => import('./pages/terminal-search/terminal-search.module').then( m => m.TerminalSearchPageModule)
   },
   {
-    path: 'trip-search-result',
+    path: 'trip-search-result/:type',
     loadChildren: () => import('./pages/trip-search-result/trip-search-result.module').then( m => m.TripSearchResultPageModule)
   },
   {
-    path: 'seats-selection',
+    path: 'seats-selection/:type',
     loadChildren: () => import('./pages/seats-selection/seats-selection.module').then( m => m.SeatsSelectionPageModule)
   },
   {

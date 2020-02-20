@@ -18,8 +18,8 @@ export class BaseService {
     this.baseUrl = environment.apiUrl;
     this.timeOut = 60000;
   }
-  public get<T>() {
-    return this.http.get<ApiResponse<T>>(`${this.baseUrl}${this.actionUrl}`)
+  public get<T>(params?: string) {
+    return this.http.get<ApiResponse<T>>(`${this.baseUrl}${this.actionUrl}?${params}`)
       .pipe(timeoutWith(this.timeOut, this.handleTimeout()));
 
   }

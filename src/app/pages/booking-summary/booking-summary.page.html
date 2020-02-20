@@ -11,45 +11,70 @@
   <div class="booking-summary">
     <div class="input-placeholder ">
       <div class="icon">
-        <ion-icon name="return-up-forward-outline"></ion-icon>
+        <ion-icon *ngIf="bookingData.type == 'one_way'" name="return-up-forward-outline"></ion-icon>
+        <ion-icon *ngIf="bookingData.type == 'round_trip'" name="repeat"></ion-icon>
       </div>
-      <span class="text">{{'One Way Trip'}}</span>
+      <span class="text">{{bookingData.type == 'one_way' ? 'One Way Trip' : 'Round Trip'}}</span>
     </div>
 
     <div class="input-placeholder ">
       <div class="icon">
         <ion-icon name="locate"></ion-icon>
       </div>
-      <span class="text">{{'Departure Terminal'}}</span>
+      <span class="text">{{terminals.departure.state.name +' - '+ terminals.departure.name}}</span>
     </div>
 
     <div class="input-placeholder ">
       <div class="icon">
         <ion-icon name="location"></ion-icon>
       </div>
-      <span class="text">{{'Arrival Terminal'}}</span>
+      <span class="text">{{terminals.arrival.state.name +' - '+terminals.arrival.name}}</span>
     </div>
 
     <div class="input-placeholder">
       <div class="icon">
         <ion-icon name="people"></ion-icon>
       </div>
-      <span class="text">{{'5 Passengers '}}</span>
+
+      <ng-template #aboveOnePassenger>
+        <span class="text">{{bookingData.passengers.length + ' Passengers'}}</span>
+      </ng-template>
+      <span class="text" *ngIf="bookingData.passengers.length == 1; else aboveOnePassenger;">{{ '1 Passenger'}}</span>
     </div>
 
     <div class="input-placeholder">
       <div class="icon">
+        <ion-icon name="pricetag"></ion-icon>
+      </div>
+      <span class="text">Departure Price - {{ bookingData.bookings[0].price | currency:'&#8358; '}} *
+        {{bookingData.passengers.length}}</span>
+    </div>
+    <div class="input-placeholder" *ngIf="bookingData.type == 'round_trip'">
+      <div class="icon">
+        <ion-icon name="pricetag"></ion-icon>
+      </div>
+      <span class="text">Return Price - {{ bookingData.bookings[1].price | currency:'&#8358; '}} *
+        {{bookingData.passengers.length}} </span>
+    </div>
+    <div class="input-placeholder" *ngIf="bookingData.type == 'round_trip'">
+      <div class="icon">
+        <ion-icon name="pricetag"></ion-icon>
+      </div>
+      <span class="text">Total - {{ total | currency:'&#8358; '}} </span>
+    </div>
+    <div class="input-placeholder">
+      <div class="icon">
         <ion-icon name="calendar"></ion-icon>
       </div>
-      <span class="text">{{ 'Departure Date'}}</span>
+      <span class="text">{{ departureDate | date:'medium'}}</span>
     </div>
 
-    <div class="input-placeholder">
+    <div class="input-placeholder" *ngIf="returnDate">
 
       <div class="icon">
         <ion-icon name="calendar"></ion-icon>
       </div>
-      <span class="text">{{ 'Return Date'}}</span>
+      <span class="text">{{ returnDate | date:'medium'}}</span>
     </div>
 
 
@@ -59,7 +84,7 @@
   <ion-toolbar>
     <ion-button (click)="processPayment()" class="btn" color="secondary">
       <ion-icon slot="start" name="card"></ion-icon>
-      Make Payment
+      Pay {{ total | currency:'&#8358; '}}
     </ion-button>
   </ion-toolbar>
 </ion-footer>
