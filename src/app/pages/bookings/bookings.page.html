@@ -6,25 +6,25 @@
 
 <ion-content>
   <ion-list class="booking-list" lines="full">
-    <ion-item class="booking-item" button *ngFor="let item of [1,2,3,5]">
+    <ion-item class="booking-item" button *ngFor="let booking of bookings">
       <ion-label>
         <div class="trip">
-          <p class="from">Ajah</p>
+          <p class="from">{{booking.trip.departureTerminal.state.name}}</p>
           <div class="icon">
             <ion-icon name="arrow-forward"></ion-icon>
           </div>
-          <p class="to">Benin</p>
+          <p class="to">{{booking.trip.arrivalTerminal.state.name}}</p>
         </div>
-        <p class="trip-type">
+        <p class="trip-type" *ngIf="booking.type == 'one_way'">
           <ion-icon name="return-up-forward-outline"></ion-icon> One Way
         </p>
-        <!-- <p class="trip-type">
+        <p class="trip-type" *ngIf="booking.type == 'round_trip'">
           <ion-icon name="repeat"></ion-icon> Round Trip
-        </p> -->
+        </p>
       </ion-label>
       <div slot="end">
-        <p class="trip-ref">#AB-099H80</p>
-        <p class="date">21 Nov. 2019</p>
+        <p class="trip-ref">#{{booking.referenceId}}</p>
+        <p class="date">{{booking.trip.departureTimestamp | date:'medium'}}</p>
       </div>
     </ion-item>
   </ion-list>
