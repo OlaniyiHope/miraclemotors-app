@@ -11,6 +11,7 @@ import { BookingModel } from 'src/app/interfaces/booking.interface';
 })
 export class BookingsPage implements OnInit {
   bookings: BookingModel[];
+  allBookings: BookingModel[];
 
   constructor(private _bookings: BookingService, private helpers: Helpers) {
   }
@@ -23,10 +24,22 @@ export class BookingsPage implements OnInit {
     this._bookings.getUserBookings()
       .subscribe(res => {
         this.bookings = res.data;
+        this.allBookings = res.data;
         this.helpers.dismissLoader();
       });
   }
 
+  search(ev: CustomEvent) {
+    const value = ev.detail.value.toLowerCase();
+    if (value == '') {
+      this.bookings = this.allBookings;
+      return;
+    }
+    this.bookings = this.allBookings.filter(bookings => {
+      return (bookings.referenceId.toLowerCase().includes(value));
+    });
+
+  }
   ionViewDidEnter() {
     this.fetchBookings();
   }

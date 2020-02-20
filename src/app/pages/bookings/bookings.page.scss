@@ -1,5 +1,16 @@
 @import "pxconverter";
 
+ion-searchbar {
+  --box-shadow: none;
+  --background: #f0f0f0;
+  font-weight: 400;
+  --icon-color: #848b98;
+  --clear-button-color: #848b98;
+  --cancel-button-color: #848b98;
+
+ 
+}
+
 .booking-list {
   .booking-item {
     --ripple-color: var(--ion-color-secondary);

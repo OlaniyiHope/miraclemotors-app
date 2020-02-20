@@ -2,6 +2,10 @@
   <ion-toolbar color="secondary">
     <ion-title>Your Bookings</ion-title>
   </ion-toolbar>
+  <ion-toolbar color="secondary">
+    <ion-searchbar (ionChange)="search($event)" class="curve" placeholder="Enter Booking Reference" inputmode="search" type="text" showCancelButton="never">
+    </ion-searchbar>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content>
