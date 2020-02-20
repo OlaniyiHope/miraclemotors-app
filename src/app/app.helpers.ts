@@ -52,7 +52,7 @@ export class Helpers {
    * @returns object
    * @memberof Helpers
    */
-  getDirtyValues(formGroup: FormGroup) {
+  getDirtyValues<T>(formGroup: FormGroup) {
     const dirtyValues = {};
     const dirtyNestedValues = {};
     Object.keys(formGroup.controls).forEach(control => {
@@ -66,7 +66,7 @@ export class Helpers {
         dirtyValues[control] = currentControl.value;
       }
     });
-    return { ...dirtyValues, ...dirtyNestedValues };
+    return { ...dirtyValues, ...dirtyNestedValues } as T;
   }
 
 

@@ -1,0 +1,74 @@
+<ion-header>
+  <ion-toolbar color="secondary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+      <ion-title class="title">Edit your profile</ion-title>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button [disabled]="!editProfileForm?.valid" (click)="saveProfileDetails()">
+        Save
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="user">
+
+  <ion-card class="ion-padding-bottom">
+    <ion-card-header>
+      <ion-card-title>Personal Information</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list>
+        <form [formGroup]="editProfileForm">
+          <ion-item>
+            <ion-label position="floating">First Name</ion-label>
+            <ion-input formControlName='firstName' type="text"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Last Name</ion-label>
+            <ion-input formControlName='lastName' type="text"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Email Address</ion-label>
+            <ion-input formControlName='email' type="email"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Phone Number</ion-label>
+            <ion-input formControlName='phoneNumber' type="tel"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Gender</ion-label>
+            <ion-select interface="action-sheet" formControlName="gender">
+              <ion-select-option *ngFor="let gender of ['male','female']" [value]="gender | lowercase">
+                {{gender | titlecase}}
+              </ion-select-option>
+            </ion-select>
+          </ion-item>
+        </form>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-subtitle>Who can we contact in case of an emergency</ion-card-subtitle>
+      <ion-card-title>Emergency Contact</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list>
+        <form [formGroup]="editProfileForm.controls.profile">
+          <ion-item>
+            <ion-label position="floating">Next of Kin Name</ion-label>
+            <ion-input formControlName="kinFullName" type="text"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="floating">Next of Kin Phone Number</ion-label>
+            <ion-input formControlName="kinPhoneNumber" type="tel"></ion-input>
+          </ion-item>
+        </form>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
