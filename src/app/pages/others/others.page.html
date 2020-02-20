@@ -22,13 +22,20 @@
       <ion-icon slot="start" name="person-outline"></ion-icon>
       <ion-label>Profile</ion-label>
     </ion-item>
+
+    <ion-item button (click)="rateApp()">
+      <ion-icon slot="start" name="star-half-outline"></ion-icon>
+      <ion-label>Rate us</ion-label>
+    </ion-item>
+    
     <ion-item button (click)="logout()">
       <ion-icon slot="start" name="log-out-outline"></ion-icon>
       <ion-label>Sign out</ion-label>
     </ion-item>
-    <ion-item button>
-      <ion-icon slot="start" name="star-half-outline"></ion-icon>
-      <ion-label>Rate us</ion-label>
-    </ion-item>
   </ion-list>
 </ion-content>
+<ion-footer class="ion-no-border">
+  <ion-toolbar>
+    <ion-note> Version: {{version}}</ion-note>
+  </ion-toolbar>
+</ion-footer>
