@@ -26,6 +26,8 @@ export class BookingsPage implements OnInit {
         this.bookings = res.data;
         this.allBookings = res.data;
         this.helpers.dismissLoader();
+      }, err => {
+        this.helpers.dismissLoader();
       });
   }
 

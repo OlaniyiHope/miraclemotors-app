@@ -243,14 +243,12 @@ export class Helpers {
   /**
    * Handles back button action
    *
-   * @param {Function} [customHandler=() => { }]
    * @returns Unregister
    * @memberof CommonMethods
    */
   // tslint:disable-next-line: ban-types
-  handleBackButton(customHandler: Function = () => { }, priority: number = 100) {
-    console.log(this.platform.backButton);
-    return this.platform.backButton.subscribeWithPriority(priority, customHandler());
+  handleBackButton(customHandler = () => { }, priority: number = 100) {
+    return this.platform.backButton.subscribeWithPriority(priority, customHandler);
   }
 
 
