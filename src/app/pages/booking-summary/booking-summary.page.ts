@@ -1,9 +1,11 @@
+import { ProfileService } from './../../services/profile.service';
 import { BookingService } from './../../services/booking.service';
 import { Terminal } from 'src/app/interfaces/terminal.interface';
 import { BookingTrip } from './../../interfaces/booking.interface';
 import { Component, OnInit } from '@angular/core';
 import { DynamicScriptService } from 'src/app/services/dynamic-script.service';
 import { Helpers } from 'src/app/app.helpers';
+import { LocalStorageKey } from 'src/app/enums/local-storage-keys.enum';
 
 
 declare const PaystackPop;
@@ -11,7 +13,7 @@ declare const PaystackPop;
   selector: 'app-booking-summary',
   templateUrl: './booking-summary.page.html',
   styleUrls: ['./booking-summary.page.scss'],
-  providers: [DynamicScriptService, BookingService]
+  providers: [DynamicScriptService, BookingService, ProfileService]
 })
 export class BookingSummaryPage implements OnInit {
   bookingData: BookingTrip;
@@ -19,7 +21,8 @@ export class BookingSummaryPage implements OnInit {
   departureDate: string;
   returnDate: string;
   total: number;
-  constructor(private _script: DynamicScriptService, private helpers: Helpers, private _booking: BookingService) {
+  constructor(private _profile: ProfileService, private _script: DynamicScriptService,
+              private helpers: Helpers, private _booking: BookingService) {
     this.bookingData = this.helpers.getNavParams();
     this.terminals = this.helpers.getNavParams('terminals');
     this.departureDate = this.helpers.getNavParams('departureDate');
@@ -42,18 +45,17 @@ export class BookingSummaryPage implements OnInit {
   }
 
   async processPayment() {
-    // const user = await this.helpers.getUser();
-
+    const user = await this.helpers.getUser();
     await this.helpers.createLoader('Processing Booking...');
     const handler = PaystackPop.setup({
       key: 'pk_test_2098765d1d3b9e0870ffd0dbc465cffd99b3a4db',
-      email: 'brian@test.com',
+      email: user.email,
       amount: this.total * 100,
       currency: 'NGN',
       metadata: {
         custom_fields: [
           {
-            customer: { test: 'br' }
+            customer: { ...user }
           }
         ]
       },
@@ -65,7 +67,7 @@ export class BookingSummaryPage implements OnInit {
         };
         this._booking.bookTrip(reqData)
           .subscribe(async res => {
-
+            this.updateUserProfile();
             await this.helpers.dismissLoader();
             console.log(res);
             const alert = await this.helpers.createAlertWithHandler('Your trip has been successfully booked!', [{
@@ -78,12 +80,8 @@ export class BookingSummaryPage implements OnInit {
               }
             }], 'Booking Successful!');
             alert.present();
-            // this.(res.data);
-            // this.helpers.registerBackButton.unsubscribe();
           }, async error => {
             await this.helpers.dismissLoader();
-            console.error(error);
-            // this.helpers.registerBackButton.unsubscribe();
           });
         console.log(response);
       },
@@ -103,4 +101,15 @@ export class BookingSummaryPage implements OnInit {
     // });
   }
 
+  updateUserProfile() {
+    const profile = this.helpers.getNavParams('profile');
+    if (profile) {
+      this._profile.updateProfile(profile).subscribe((res) => {
+        this.helpers.save(LocalStorageKey.user, res.data);
+      }, err => {
+        console.error(err);
+      });
+
+    }
+  }
 }

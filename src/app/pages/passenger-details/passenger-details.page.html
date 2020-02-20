@@ -8,7 +8,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="bg">
+<ion-content class="bg" *ngIf="user">
 
   <ion-list class="bg">
     <ion-list-header>
@@ -32,27 +32,29 @@
             </div>
           </form>
           <ion-item lines="inset">
-            <ion-input placeholder="Email Address" type="text"></ion-input>
+            <ion-input [value]="user?.email" placeholder="Email Address" type="text"></ion-input>
           </ion-item>
 
           <ion-item lines="inset">
-            <ion-input placeholder="Phone Number" type="tel"></ion-input>
+            <ion-input [value]="user?.phoneNumber" placeholder="Phone Number" type="tel"></ion-input>
           </ion-item>
         </ion-item-group>
 
-        <ion-item-group class="ion-margin-top">
-          <ion-item-divider>
-            <ion-label>Next of Kin</ion-label>
-          </ion-item-divider>
+        <form [formGroup]="profileForm">
+          <ion-item-group class="ion-margin-top">
+            <ion-item-divider>
+              <ion-label>Next of Kin</ion-label>
+            </ion-item-divider>
 
-          <ion-item lines="inset" class="top">
-            <ion-input placeholder="Full Name" type="text"></ion-input>
-          </ion-item>
+            <ion-item lines="inset" class="top">
+              <ion-input formControlName="kinFullName" placeholder="Full Name" type="text"></ion-input>
+            </ion-item>
 
-          <ion-item lines="inset">
-            <ion-input placeholder="Phone Number" type="tel"></ion-input>
-          </ion-item>
-        </ion-item-group>
+            <ion-item lines="inset">
+              <ion-input formControlName="kinPhoneNumber" placeholder="Phone Number" type="tel"></ion-input>
+            </ion-item>
+          </ion-item-group>
+        </form>
       </ion-card-content>
     </ion-card>
   </ion-list>
@@ -100,7 +102,7 @@
 
 <ion-footer>
   <ion-toolbar>
-    <ion-button [disabled]="!passengersForm.valid" (click)="gotoSummary()" color="secondary">
+    <ion-button [disabled]="!passengersForm?.valid && !profileForm?.valid" (click)="gotoSummary()" color="secondary">
       Continue
     </ion-button>
   </ion-toolbar>

@@ -3,6 +3,7 @@ import { Helpers } from 'src/app/app.helpers';
 import { Component, OnInit } from '@angular/core';
 import { Pages } from 'src/app/enums/pages.enum';
 import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
+import { User } from 'src/app/interfaces/user.interface';
 
 @Component({
   selector: 'app-passenger-details',
@@ -12,7 +13,9 @@ import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
 export class PassengerDetailsPage implements OnInit {
 
   passengersForm: FormGroup;
+  profileForm: FormGroup;
   passengers: PassengersData;
+  user: User;
   constructor(private fb: FormBuilder, private helpers: Helpers) {
     this.passengers = this.helpers.getNavParams('passengers');
     this.initializeForms();
@@ -21,13 +24,15 @@ export class PassengerDetailsPage implements OnInit {
   ngOnInit() {
   }
 
-  initializeForms() {
 
+
+  async initializeForms() {
+    this.user = await this.helpers.getUser();
     const controls = [
       this.fb.group({
-        name: [null, Validators.required],
+        name: [`${this.user.firstName} ${this.user.lastName}`, Validators.required],
         ageBracket: ['adult', Validators.required],
-        gender: ['male', Validators.required]
+        gender: [this.user.gender, Validators.required]
       })
     ];
 
@@ -51,7 +56,11 @@ export class PassengerDetailsPage implements OnInit {
       passengers: this.fb.array(controls, [Validators.required])
     });
 
-    console.log(this.passengersForm.value);
+    this.profileForm = this.fb.group({
+      kinFullName: [this.user?.profile?.kinFullName, [Validators.required]],
+      kinPhoneNumber: [this.user?.profile?.kinPhoneNumber, [Validators.required, Validators.minLength(11)]],
+    });
+
   }
 
   passengersFormControls() {
@@ -60,6 +69,7 @@ export class PassengerDetailsPage implements OnInit {
 
   gotoSummary() {
     const passengers = this.passengersForm.controls.passengers.value;
-    this.helpers.navPush(Pages.bookingSummary, { ...this.helpers.getNavParams(), passengers });
+    const profile = this.helpers.getDirtyValues(this.profileForm);
+    this.helpers.navPush(Pages.bookingSummary, { ...this.helpers.getNavParams(), passengers, profile });
   }
 }
