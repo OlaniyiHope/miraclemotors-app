@@ -1,3 +1,4 @@
+import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { SearchTrips } from './../../interfaces/trips.interface';
 import { TripsService } from './../../services/trips.service';
 import { Subscription } from 'rxjs';
@@ -22,16 +23,20 @@ export class HomePage implements OnInit {
   bookingType: 'one_way' | 'round_trip' = 'one_way';
   returnDate: string;
   constructor(
+    private statusBar: StatusBar,
     private _trips: TripsService,
     private _terminal: TerminalsService,
     private helpers: Helpers,
     private alertCtrl: AlertController) {
+
   }
 
   ngOnInit() {
   }
 
   ionViewWillEnter() {
+    this.statusBar.backgroundColorByName('white');
+    this.statusBar.styleDefault();
     this.listenToTerminalChanges();
   }
 
@@ -123,6 +128,8 @@ export class HomePage implements OnInit {
   }
 
   ionViewWillLeave() {
+    this.statusBar.styleLightContent();
+    this.statusBar.backgroundColorByHexString('#425486');
     this.selectedTerminals$.unsubscribe();
   }
 }

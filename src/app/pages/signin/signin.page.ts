@@ -1,3 +1,4 @@
+import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
@@ -12,7 +13,8 @@ import { Pages } from 'src/app/enums/pages.enum';
 export class SigninPage implements OnInit {
 
   signinForm: FormGroup;
-  constructor(private _auth: AuthService, private fb: FormBuilder, private helpers: Helpers) {
+  constructor(private statusBar: StatusBar, private _auth: AuthService, private fb: FormBuilder, private helpers: Helpers) {
+
 
     this.signinForm = this.fb.group({
       phoneNumber: [null, Validators.required],
@@ -21,6 +23,11 @@ export class SigninPage implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  ionViewWillEnter() {
+    this.statusBar.backgroundColorByHexString('#5acafa');
+    this.statusBar.styleDefault();
   }
 
   async submitForm() {
